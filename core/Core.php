@@ -5,7 +5,7 @@ class Core{
 		$router = new Router();
 
 		//configurar as rotas
-		$router->addRoute('/', array(new homeController(), 'index'));
+		//$router->addRoute('/', array(new homeController(), 'index'));
 		$router->addRoute('/agrotoxicos', array(new agrotoxicosController(), 'index')); // Retorna todos os agrotóxicos
 		$router->addRoute('/agrotoxicos/{id}', array(new agrotoxicosController(), 'get')); // Retorna um agrotóxico pelo ID
 		$router->addRoute('/agrotoxico', array(new agrotoxicosController(), 'create')); // Cria um novo agrotóxico
