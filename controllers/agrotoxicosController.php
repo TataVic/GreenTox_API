@@ -10,7 +10,7 @@ class agrotoxicosController extends controller{
 
 	public function index(){
 
-		//$api = new Api();
+		//$api = new Api(); // quando tiveer o token instanciar
 
 		$agrotoxicos = new Agrotoxicos();
 		$lista = $agrotoxicos->getAll();
