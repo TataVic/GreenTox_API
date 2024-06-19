@@ -1,0 +1,7 @@
+body {
+    background-image: url('images/fundo.png');
+    background-size: cover; /* Ajusta a imagem para cobrir todo o elemento */
+    background-position: center; /* Centraliza a imagem horizontal e verticalmente */
+    background-repeat: no-repeat; /* Evita repetir a imagem */
+    /* Outras propriedades de background, se necessário */
+  }
