@@ -1,5 +1,5 @@
 <?php
-class router{
+class Router{
 	private $routes = array();
 
 	//metodo para adicionar uma rota
