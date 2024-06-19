@@ -1,6 +1,7 @@
 <?php
 class agrotoxicos extends model{
 
+    // Função de listar todos os agrotoxicos cadastrados
 	public function getAll(){
 		$array = array();
 
@@ -15,7 +16,8 @@ class agrotoxicos extends model{
 
 		return $array;
 	}
-
+	
+    // Função de buscar por id
 	public function getid($id){
 		$retorno = array();
 
@@ -33,24 +35,45 @@ class agrotoxicos extends model{
 
 		return $retorno;
 	}
+
+    // Função de deletar por id
 	public function delete($id) {
         $sql = "DELETE FROM tab_agrotox WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id', $id);
-        
+    
         try {
             $stmt->execute();
-            return true; // Deleção bem-sucedida
+            return true; 
         } catch (\PDOException $e) {
-            // Aqui você pode logar o erro ou tratar de outra forma
-            return false; // Erro ao deletar
+           
+            return false; 
         }
     }
-	public function getnome($id) {
-      // pesquisa por nome
-    }
 
+	// pesquisa por nome trazendo outros dados , pesquisa mais não corretamente
+	public function getnome($nome) {
+        $retorno = array();
+        $sql = "SELECT id,nome, tipo, fabricante, registro_anvisa, categoria, classe, preco, qtd_estoque, precaucoes, modo_uso 
+                FROM tab_agrotox 
+                WHERE nome LIKE :nome";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nome', '%' . $nome . '%');
+        $stmt->execute();
+        
+        if($stmt->rowCount() > 0){
+            $retorno = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+        return $retorno;
+    }
+}
+
+
+	// public function update($id) {
 	
 
+	
+	// }
 
-}
