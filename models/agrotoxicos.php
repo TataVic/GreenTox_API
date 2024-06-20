@@ -51,6 +51,7 @@ class agrotoxicos extends model{
         }
     }
 
+<<<<<<< Updated upstream
 	// pesquisa por nome trazendo outros dados , pesquisa mais não corretamente
 	public function getnome($nome) {
         $retorno = array();
@@ -72,6 +73,42 @@ class agrotoxicos extends model{
 
 
 	// public function update($id) {
+=======
+	public function create($nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso) {
+		try {
+			$sql = "INSERT INTO tab_agrotox (nome, tipo, fabricante, registro_anvisa, categoria, classe, preco, qtd_estoque, precaucoes, modo_uso) 
+					VALUES (:nome, :tipo, :fabricante, :registro_anvisa, :categoria, :classe, :preco, :qtd_estoque, :precaucoes, :modo_uso)";
+			$sql = $this->db->prepare($sql);
+			$sql->bindParam(':nome', $nome);
+			$sql->bindParam(':tipo', $tipo);
+			$sql->bindParam(':fabricante', $fabricante);
+			$sql->bindParam(':registro_anvisa', $registro_anvisa);
+			$sql->bindParam(':categoria', $categoria);
+			$sql->bindParam(':classe', $classe);
+			$sql->bindParam(':preco', $preco);
+			$sql->bindParam(':qtd_estoque', $qtd_estoque);
+			$sql->bindParam(':precaucoes', $precaucoes);
+			$sql->bindParam(':modo_uso', $modo_uso);
+			$sql->execute();
+	
+			return $this->db->lastInsertId(); // Retorna o ID do novo registro inserido
+			return [
+				'nome' => $nome,
+				'tipo' => $tipo,
+				'fabricante' => $fabricante,
+				'registro_anvisa' => $registro_anvisa,
+				'categoria' => $categoria,
+				'classe' => $classe,
+				'preco' => $preco,
+				'qtd_estoque' => $qtd_estoque,
+				'precaucoes' => $precaucoes,
+				'modo_uso' => $modo_uso
+			];
+		} catch (PDOException $excecao) {
+			throw new Exception("Erro ao criar um novo agrotóxico: " . $excecao->getMessage());
+		}
+	}
+>>>>>>> Stashed changes
 	
 
 	

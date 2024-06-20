@@ -1,4 +1,7 @@
 <?php
+
+header('Content-Type: text/html; charset=UTF-8');
+
 class agrotoxicosController extends controller{
 
 	private $dados;
@@ -32,9 +35,50 @@ class agrotoxicosController extends controller{
 		output_header(true,'Consulta Realizada', $retorno);
 	}
 	
-		public function create() {
-			// Lógica para criar um novo agrotóxico
+	public function create() { //método de criar registros
+	
+		$dados = json_decode(file_get_contents('php://input'), true); //decodifica o json
+
+		 // Verifique se a decodificação foi bem-sucedida
+		 if (json_last_error() !== JSON_ERROR_NONE) {
+			output_header(false, "Erro ao decodificar JSON: " . json_last_error_msg());
+			return;
 		}
+		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+			$nome = $dados['nome'] ?? '';
+			$tipo = $dados['tipo'] ?? '';
+			$fabricante = $dados['fabricante'] ?? '';
+			$registro_anvisa = $dados['registro_anvisa'] ?? '';
+			$categoria = $dados['categoria'] ?? '';
+			$classe = $dados['classe'] ?? '';
+			$preco = $dados['preco'] ?? '';
+			$qtd_estoque = $dados['qtd_estoque'] ?? '';
+			$precaucoes = $dados['precaucoes'] ?? '';
+			$modo_uso = $dados['modo_uso'] ?? '';
+	
+			if (empty($nome) || empty($tipo) || empty($fabricante) || empty($registro_anvisa) ||
+				empty($categoria) || empty($classe) || empty($preco) || empty($qtd_estoque) ||
+				empty($precaucoes) || empty($modo_uso)) {
+				output_header(false, "Informe todos os dados, em todos os campos!");
+				return;
+			}
+	
+			try {
+				$agrotoxicos = new agrotoxicos();
+				$retorno = $agrotoxicos->create($nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso);
+				output_header(true, "Produto agrotóxico cadastrado com sucesso!", $dados);
+				
+			} catch (Exception $excecao) {
+				output_header(false, "Erro no cadastro do agrotóxico: " . $excecao->getMessage());
+			}
+		}else{
+			output_header('Dados vazios ou método diferente de cadastrar, volte e preencha-os!');
+			return;
+		}
+	}
+	
+
 	
 		public function update() {
 		
