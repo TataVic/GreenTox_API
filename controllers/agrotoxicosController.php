@@ -18,6 +18,7 @@ class agrotoxicosController extends controller{
 		output_header(true,'todos os produtos',$lista);
 	}
 	
+	//Função de Pesquisar registros
 	public function get(){
 		//$api = new Api();
 		if(isset($_GET['id']) && !empty($_GET['id'])){
@@ -35,7 +36,22 @@ class agrotoxicosController extends controller{
 		output_header(true,'Consulta Realizada', $retorno);
 	}
 	
-	public function create() { //método de criar registros
+	//Função de Pesquisar por nome os registros
+	public function getnome() {
+		$agrotoxicos = new Agrotoxicos;
+
+		$nome = $_GET['nome'];
+		$retorno = $agrotoxicos->getnome($nome);
+
+		if(count($retorno) == 0){
+			output_header(false, 'Nenhum tipo cadastrado');
+		} else {
+			output_header(true, 'Consulta realizada', $retorno);
+		}
+	}
+		
+	//Função de Criar registros
+	public function create() { 
 	
 		$dados = json_decode(file_get_contents('php://input'), true); //decodifica o json
 
@@ -44,6 +60,7 @@ class agrotoxicosController extends controller{
 			output_header(false, "Erro ao decodificar JSON: " . json_last_error_msg());
 			return;
 		}
+
 		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 			$nome = $dados['nome'] ?? '';
@@ -78,67 +95,57 @@ class agrotoxicosController extends controller{
 		}
 	}
 	
+	//Função de Atualizar registros
+	public function update($id) {
+		$dados = json_decode(file_get_contents('php://input'), true);
 
-	
-		public function update() {
-		
-		}
+		If($_SERVER['REQUEST_METHOD'] === 'PUT'){
+			$nome = $dados['nome'] ?? '';
+			$tipo = $dados['tipo'] ?? '';
+			$fabricante = $dados['fabricante'] ?? '';
+			$registro_anvisa = $dados['registro_anvisa'] ?? '';
+			$categoria = $dados['categoria'] ?? '';
+			$classe = $dados['classe'] ?? '';
+			$preco = $dados['preco'] ?? '';
+			$qtd_estoque = $dados['qtd_estoque'] ?? '';
+			$precaucoes = $dados['precaucoes'] ?? '';
+			$modo_uso = $dados['modo_uso'] ?? '';
 
-		public function getnome() {
-			$agrotoxicos = new Agrotoxicos;
-
-			$nome = $_GET['nome'];
-			$retorno = $agrotoxicos->getnome($nome);
-	
-			if(count($retorno) == 0){
-				output_header(false, 'Nenhum tipo cadastrado');
-			} else {
-				output_header(true, 'Consulta realizada', $retorno);
+			try {
+				$agrotoxicos = new agrotoxicos();
+				$retorno = $agrotoxicos->update($nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso);
+				if ($retorno > 0) {
+					output_header(true, "Registro atualizado com sucesso.");
+				} else {
+					output_header(false, "Nenhuma alteração foi realizada.");
+				}
+			} catch (Exception $excecao) {
+				output_header(false, "Erro na atualização do agrotóxico: " . $excecao->getMessage());
 			}
+		}Else{
+			output_header('ERROOOOOO');
+			return;
 		}
-			
-		public function delete() {
-		
-			$id = $_GET['id'];
-			$agrotoxicos = new Agrotoxicos();
-			$agrotoxicoExistente = $agrotoxicos->getid($id);
-		
-			if (empty($agrotoxicoExistente)) {
-				echo json_encode(['error' => 'Agrotóxico não encontrado']);
-				return;
-			}
-			$deletado = $agrotoxicos->delete($id);
-		
-			if ($deletado) {
-				echo json_encode(['success' => 'Agrotóxico deletado com sucesso']);
-			} else {
-				echo json_encode(['error' => 'Erro ao deletar o agrotóxico']);
-			}
-		}
-
-		
 	}
 	
 
-
-
-
-
-		
+	//Função de Deletar registros
+	public function delete() {
+		$id = $_GET['id'];
+		$agrotoxicos = new Agrotoxicos();
+		$agrotoxicoExistente = $agrotoxicos->getid($id);
 	
+		if (empty($agrotoxicoExistente)) {
+			echo json_encode(['error' => 'Agrotóxico não encontrado']);
+			return;
+		}
+		$deletado = $agrotoxicos->delete($id);
 	
-	
+		if ($deletado) {
+			echo json_encode(['success' => 'Agrotóxico deletado com sucesso']);
+		} else {
+			echo json_encode(['error' => 'Erro ao deletar o agrotóxico']);
+		}
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
