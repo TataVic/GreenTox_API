@@ -1,7 +1,43 @@
-body {
-    background-image: url('images/fundo.png');
-    background-size: cover; /* Ajusta a imagem para cobrir todo o elemento */
-    background-position: center; /* Centraliza a imagem horizontal e verticalmente */
-    background-repeat: no-repeat; /* Evita repetir a imagem */
-    /* Outras propriedades de background, se necessário */
+ body {
+    color: rgb(115,115,115);
+    background: url('images/fundo.png') no-repeat center center fixed;
+    background-blend-mode: overlay;
+    background-size: cover;
   }
+  .btn-custom {
+    background-color: rgb(153,189,115);
+    color: white;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: rgb(115,115,115);
+    color: white;
+}
+
+.container-custom {
+    background-color: rgb(246,239,223);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgb(153,189,115); 
+}
+
+.form-control-custom {
+    background-color: rgb(246,239,223);
+    border: 1px solid rgb(153,189,115);
+    color: rgb(115,115,115);
+}
+
+.form-control-custom::placeholder {
+    color: rgb(153,189,115);
+}
+
+.button-group .btn {
+  flex: 1; 
+  margin-right: 10px; 
+}
+
+.button-group .btn:last-child {
+  margin-right: 0; 
+}
