@@ -1,38 +1,13 @@
 body {
+  color: rgb(115,115,115);
   background: url('images/fundo.png') no-repeat center center fixed;
   background-blend-mode: overlay;
   background-size: cover;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
-.form-container {
-  width: 300px;
-  padding: 20px;
-  background-color: rgb(246,239,223);
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid rgb(153,189,115);
-}
-
-.form-control-custom {
-  background-color: rgb(246,239,223);
-  border: 1px solid rgb(153,189,115);
-  color: rgb(115,115,115);
-  margin-bottom: 10px;
-}
-
-.form-control-custom::placeholder {
-  color: rgb(153,189,115);
-}
-
 .btn-custom {
   background-color: rgb(153,189,115);
   color: white;
   border: none;
-  width: 100%;
 }
 
 .btn-custom:hover {
@@ -40,6 +15,29 @@ body {
   color: white;
 }
 
-.text-center {
-  text-align: center;
+.container-custom {
+  background-color: rgb(246,239,223);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgb(153,189,115); 
+}
+
+.form-control-custom {
+  background-color: rgb(246,239,223);
+  border: 1px solid rgb(153,189,115);
+  color: rgb(115,115,115);
+}
+
+.form-control-custom::placeholder {
+  color: rgb(153,189,115);
+}
+
+.button-group .btn {
+flex: 1; 
+margin-right: 10px; 
+}
+
+.button-group .btn:last-child {
+margin-right: 0; 
 }
