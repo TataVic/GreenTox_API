@@ -2,7 +2,7 @@
 
 <html>
     <body>  
-        <div class="container-custom" style="background-color: white; padding: 20px; border-radius: 20px;">
+        <div class="container-custom-form">
             <h2 class="mb-4 text-center">Login</h2>
             <form id="loginForm">
                 <div class="form-group mb-3">
