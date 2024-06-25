@@ -73,7 +73,7 @@ class agrotoxicos extends model{
 		return $retorno;
 	}
 
-   // pesquisa por nome trazendo outros dados , pesquisa mais não corretamente (READ)
+   // Pesquisa pelo nome (rota search)
 	public function getnome($nome) {
         $retorno = array();
         $sql = "SELECT id,nome, tipo, fabricante, registro_anvisa, categoria, classe, preco, qtd_estoque, precaucoes, modo_uso 
@@ -91,25 +91,42 @@ class agrotoxicos extends model{
         return $retorno;
     }
 	
-	//Função de Atualizar registros (UPDATE)
-	public function update($id) { 
-		$retorno = array();
+	// Função de Atualizar registros (UPDATE)
+public function update($id, $nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso) {
+    try {
+        $sql = "UPDATE tab_agrotox SET 
+                    nome = :nome, 
+                    tipo = :tipo, 
+                    fabricante = :fabricante, 
+                    registro_anvisa = :registro_anvisa, 
+                    categoria = :categoria, 
+                    classe = :classe, 
+                    preco = :preco, 
+                    qtd_estoque = :qtd_estoque, 
+                    precaucoes = :precaucoes, 
+                    modo_uso = :modo_uso 
+                WHERE id = :id";
+			$sql = $this->db->prepare($sql);
+			$sql->bindParam(':id', $id);
+			$sql->bindParam(':nome', $nome);
+			$sql->bindParam(':tipo', $tipo);
+			$sql->bindParam(':fabricante', $fabricante);
+			$sql->bindParam(':registro_anvisa', $registro_anvisa);
+			$sql->bindParam(':categoria', $categoria);
+			$sql->bindParam(':classe', $classe);
+			$sql->bindParam(':preco', $preco);
+			$sql->bindParam(':qtd_estoque', $qtd_estoque);
+			$sql->bindParam(':precaucoes', $precaucoes);
+			$sql->bindParam(':modo_uso', $modo_uso);
+			$sql->execute();
 
-		$sql = "UPDATE tab_agrotox SET nome = :nome, tipo = :tipo, fabricante = :fabricante, registro_anvisa = :registro_anvisa, categoria = :categoria, classe = :classe, preco = :preco, qtd_estoque = :qtd_estoque, precaucoes = :precaucoes, modo_uso = :modo_uso 
-				WHERE id = :id";
-		$sql = $this->db->prepare($sql);
-		$sql->execute();
+        return $sql->rowCount() > 0;
+    } catch (PDOException $excecao) {
+        throw new Exception("Erro ao atualizar agrotóxico: " . $excecao->getMessage());
+    }
+}
 
-		if ($sql->rowCount() > 0) {
-			echo "Atualização com sucesso!";
-		} else {
-			echo "Erro na atualização!";
-		}
-		var_dump($retorno);
-		var_dump($sql);
-	}
-
-	// Função de deletar por id (DELETE)
+// Função de deletar por id (DELETE)
 	public function delete($id) {  
         $sql = "DELETE FROM tab_agrotox WHERE id = :id";
         $stmt = $this->db->prepare($sql);
@@ -123,10 +140,5 @@ class agrotoxicos extends model{
             return false; 
         }
     }
-
-	
-
-
-	 
 
 }

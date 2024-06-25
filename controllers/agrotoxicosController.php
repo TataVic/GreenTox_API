@@ -1,7 +1,6 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
-
 class agrotoxicosController extends controller{
 
 	private $dados;
@@ -80,7 +79,6 @@ class agrotoxicosController extends controller{
 				output_header(false, "Informe todos os dados, em todos os campos!");
 				return;
 			}
-	
 			try {
 				$agrotoxicos = new agrotoxicos();
 				$retorno = $agrotoxicos->create($nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso);
@@ -95,11 +93,11 @@ class agrotoxicosController extends controller{
 		}
 	}
 	
-	//Função de Atualizar registros
-	public function update($id) {
+	public function update() {
 		$dados = json_decode(file_get_contents('php://input'), true);
-
-		If($_SERVER['REQUEST_METHOD'] === 'PUT'){
+	
+		if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+			$id = $dados['id'] ?? null;
 			$nome = $dados['nome'] ?? '';
 			$tipo = $dados['tipo'] ?? '';
 			$fabricante = $dados['fabricante'] ?? '';
@@ -110,11 +108,16 @@ class agrotoxicosController extends controller{
 			$qtd_estoque = $dados['qtd_estoque'] ?? '';
 			$precaucoes = $dados['precaucoes'] ?? '';
 			$modo_uso = $dados['modo_uso'] ?? '';
-
+	
+			if (!$id) {
+				output_header(false, "ID do agrotóxico não fornecido.");
+				return;
+			}
+	
 			try {
 				$agrotoxicos = new agrotoxicos();
-				$retorno = $agrotoxicos->update($nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso);
-				if ($retorno > 0) {
+				$retorno = $agrotoxicos->update($id, $nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso);
+				if ($retorno) {
 					output_header(true, "Registro atualizado com sucesso.");
 				} else {
 					output_header(false, "Nenhuma alteração foi realizada.");
@@ -122,7 +125,7 @@ class agrotoxicosController extends controller{
 			} catch (Exception $excecao) {
 				output_header(false, "Erro na atualização do agrotóxico: " . $excecao->getMessage());
 			}
-		}Else{
+		} else {
 			output_header('ERROOOOOO');
 			return;
 		}
