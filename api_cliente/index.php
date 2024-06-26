@@ -18,15 +18,14 @@
             </div>
             <div id="dados-todos" class="mb-4"></div>
             <div id="dados-id" class="mt-4"></div>
+                
         </div>
     </div>
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content" style="border: 2px solid rgb(153, 189, 115); background-color: rgb(246, 239, 223);">
                 <div class="modal-header">
                     <h5 class="modal-title" id="resultModalLabel">Agrotóxicos</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -39,6 +38,7 @@
     </div>
 
     <script type="text/javascript">
+
         function Listartodos(){
             $.ajax({
                 url: 'http://localhost/GreenTox_API/agrotoxicos',
@@ -77,9 +77,12 @@
                             <td>${dado.categoria}</td>
                             <td>${dado.preco}</td>
                             <td>
-                                <button class="btn btn-info btn-sm">Visualizar</button>
-                                <button class="btn btn-warning btn-sm">Editar</button>
-                                <button class="btn btn-danger btn-sm">Excluir</button>
+                                <button class="btn btn-info btn-sm">
+                                    <img></button>
+                                <button class="btn btn-warning btn-sm">
+                                <img></button>
+                                <button class="btn btn-danger btn-sm">
+                                <img></button>
                             </td>
                           </tr>`;
             });
