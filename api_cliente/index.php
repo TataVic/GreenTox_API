@@ -1,6 +1,4 @@
-<!DOCTYPE html>
 <?php require 'head.php'; ?>
-
 <body>
     <div class="container mt-5">
         <div class="container-custom">
