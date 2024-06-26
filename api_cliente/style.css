@@ -62,3 +62,39 @@ margin-right: 0;
   max-width: calc(100% - 40px); 
 }
 
+.modal-custom {
+  display: none; /* Inicialmente oculto */
+  background-color: rgb(246, 239, 223);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgb(153, 189, 115);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 40px);
+  z-index: 1000; /* Garantir que o modal fique acima de outros elementos */
+}
+
+.modal-custom-header {
+  background-color: rgb(153, 189, 115);
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-custom-body {
+  padding: 20px;
+  color: rgb(115, 115, 115);
+}
+
+.modal-custom-footer {
+  background-color: rgb(153, 189, 115);
+  color: white;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-align: right;
+}
