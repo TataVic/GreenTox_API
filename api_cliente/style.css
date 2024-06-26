@@ -67,3 +67,20 @@ margin-right: 0;
   border: 2px solid rgb(153, 189, 115);
 }
 
+.btn-menu{ 
+  background-color:rgb(153, 189, 115); 
+  border-color: #28a745;
+  color: white;
+}
+
+.btn-editar{ 
+  background-color:rgb(153, 189, 115); 
+  border-color: #28a745;
+  color: white;
+}
+
+.btn-excluir{ 
+  background-color: rgb(115,115,115);
+  border-color: #28a745;
+  color: white;
+}

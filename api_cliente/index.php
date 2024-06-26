@@ -11,6 +11,7 @@
             <div class="button-group mb-4">
                 <button type="button" class="btn btn-custom" onclick="PesquisaNome()">Pesquisar</button>
                 <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#resultModal" onclick="Listartodos()">Consultar Todos</button>
+                <button type="button" class="btn btn-custom" onclick="CadastrarProd()">Cadastrar</button>
             </div>
             <div id="dados-todos" class="mb-4"></div>
             <div id="dados-nome" class="mt-4"></div>
@@ -106,18 +107,23 @@
                             <td>${dado.qtd_estoque}</td>
                             <td>${dado.preco}</td>
                             <td>
-                                <button class="btn btn-info btn-sm">
-                                    <img></button>
-                                <button class="btn btn-warning btn-sm">
-                                <img></button>
-                                <button class="btn btn-danger btn-sm">
-                                <img></button>
+                                <button class="btn btn-sm btn-menu">
+                                    <img src="images/olho.png" alt="Visualizar">
+                                </button>
+                                <button class="btn btn-sm btn-editar">
+                                    <img src="images/lapis.png" alt="Editar">
+                                </button>
+                                <button class="btn btn-sm btn-excluir" onclick="excluirProduto(${dado.id})">
+                                    <img src="images/lixeira.png" alt="Excluir">
+                                </button>
                             </td>
                           </tr>`;
             });
             table += `</tbody></table>`;
             return table;
         }
+
+    
     </script>
 </body>
 </html>
