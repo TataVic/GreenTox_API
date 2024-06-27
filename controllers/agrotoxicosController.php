@@ -130,9 +130,8 @@ class agrotoxicosController extends controller{
 			return;
 		}
 	}
-	
 
-	//Função de Deletar registros
+
 	public function delete() {
 		$id = $_GET['id'];
 		$agrotoxicos = new Agrotoxicos();
@@ -150,5 +149,4 @@ class agrotoxicosController extends controller{
 			echo json_encode(['error' => 'Erro ao deletar o agrotóxico']);
 		}
 	}
-
 }

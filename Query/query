@@ -1,0 +1,90 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 27/06/2024 às 10:05
+-- Versão do servidor: 8.3.0
+-- Versão do PHP: 8.2.18
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `agrotox`
+--
+create database agrotox;
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tab_agrotox`
+--
+
+DROP TABLE IF EXISTS `tab_agrotox`;
+CREATE TABLE IF NOT EXISTS `tab_agrotox` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `tipo` varchar(100) DEFAULT NULL,
+  `fabricante` varchar(255) DEFAULT NULL,
+  `registro_anvisa` varchar(50) DEFAULT NULL,
+  `categoria` varchar(100) DEFAULT NULL,
+  `classe` varchar(50) DEFAULT NULL,
+  `preco` decimal(10,2) DEFAULT NULL,
+  `qtd_estoque` int DEFAULT NULL,
+  `precaucoes` text,
+  `modo_uso` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `tab_agrotox`
+--
+
+INSERT INTO `tab_agrotox` (`id`, `nome`, `tipo`, `fabricante`, `registro_anvisa`, `categoria`, `classe`, `preco`, `qtd_estoque`, `precaucoes`, `modo_uso`) VALUES
+(1, 'Pesticida X', 'Herbicida', 'AgroQuímica Ltda', '1234567890', 'Controle de Plantas Daninhas', 'Classe 2', 150.75, 500, 'Evitar contato com a pele e olhos. Usar equipamento de proteção.', 'Diluir 10 ml em 1 litro de água e aplicar nas áreas afetadas.'),
+(9, 'Veneno de mato', 'Veneno', 'AhgroQuimic', '147258', 'Veneno de matin', 'Herbicida', 523.00, 5, 'Use luva e máscara', 'utilize em ambiente aberto'),
+(7, 'Novo Nome do Agrotóxico', 'Novo Tipo', 'Novo Fabricante', 'Novo Registro', 'Nova Categoria', 'Nova Classe', 99.99, 100, 'Novas Precauções', 'Novo Modo de Uso'),
+(8, '', '', '', '', '', '', 0.00, 0, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tab_usuario`
+--
+
+DROP TABLE IF EXISTS `tab_usuario`;
+CREATE TABLE IF NOT EXISTS `tab_usuario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `usuario` varchar(255) NOT NULL,
+  `senha` text NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `tab_usuario`
+--
+
+INSERT INTO `tab_usuario` (`id`, `nome`, `usuario`, `senha`, `email`, `token`) VALUES
+(1, 'João Silva', 'joaosilva', '$2y$10$v8oNenei35EPg8hV7Z31guoOScW8iHDut7WAx61oR.hH3xWUx4JSW', 'joao@example.com', 'ddd39350ebdfdfc3eb4d3adc355cbaeb'),
+(2, 'Ani ', 'anis', '$2y$10$wxxSHIRUfgVL4rIRLAKcPe0EHrqL4MFf.kgootm9eWLkYsZEO3Tkq', 'ani@example.com', '60177cab5bb1268f0851221d080669d9'),
+(3, 'ta', 'ta', '$2y$10$46OLuOEXB7U3Nb3.IE6u2.XE3xP9VIJ7N.5OJSETpFhef3roNQApW', 'ta@gmai', 'de6457b545d56057bab726327b3db86f'),
+(4, 'ta', 'ta', '$2y$10$3UYCu3TDKx7cN9ryZrb2fe8cFM2gFWsUxhLOMgVh80XZWSm2Xs8KC', 'ta@gm', 'babfda54cc000d1c32064d4235a1592c'),
+(5, 'ta', 'ta', '$2y$10$bfe8MHTSF0tAPHeQ3YS4yuPBYARgbWVyXcqLpr7YSZLLcyuANcyIm', 'ta@gm', '5e30c90d82e5f0e48b738d229897a179'),
+(6, 'ta', 'ta', '$2y$10$Lgl6vxOA2tCVJeratC2mEeQCch3yHAmeW9ALKvxPTojZFCm2fdA7y', 'ta@gma', '7347366d6885fdfb5dc62ff52b303271'),
+(7, 'ta', 'tau', '$2y$10$vTS0d9fFwk4JSu3E8ZO.D..rb8capat5cGl7JVJjcvzvOhUStAy86', 'tau@gmail.com', '073d977021e9e3005132fe13df03c33a'),
+(8, 'tau', 'tau', '$2y$10$wg6x5TzW2ljpj82G3CBKhuDTGt0JHWTlfBDW6fosKvE.5wll1bw2W', 'tau@gmail.com', '9599221f6c1c8774eaaf4691242e7d59');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

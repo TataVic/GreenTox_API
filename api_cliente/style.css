@@ -67,3 +67,7 @@ margin-right: 0;
   border: 2px solid rgb(153, 189, 115);
 }
 
+#texto{
+  margin-top: 10px;
+  font-size: 12;
+}

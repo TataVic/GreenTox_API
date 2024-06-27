@@ -16,4 +16,13 @@ function output_header($status = true,
     // finalizar a execução
     exit;
 }
+
+function retorna_cadastro($status = null, $token = null) {
+    header("Content-Type: application/json"); 
+    header("charset=utf-8"); 	
+    echo json_encode(
+        array('status' => $status, 'token' => $token)
+    );
+    exit;
+}
 ?>
