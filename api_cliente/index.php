@@ -9,7 +9,7 @@
             <div class="button-group mb-4">
                 <button type="button" class="btn btn-custom" onclick="PesquisaNome()">Pesquisar</button>
                 <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#resultModal" onclick="Listartodos()">Consultar Todos</button>
-                <button type="button" class="btn btn-custom" onclick="CadastrarProd()">Cadastrar</button>
+                <a href="cadprod.php" class="btn btn-custom">Cadastrar</a>
             </div>
             <div id="dados-todos" class="mb-4"></div>
             <div id="dados-nome" class="mt-4"></div>
