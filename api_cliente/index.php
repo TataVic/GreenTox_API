@@ -119,6 +119,36 @@
             return table;
         }
 
+        function excluirProduto(id) {
+    if (confirm("Você tem certeza que deseja excluir este produto?")) {
+        // Fazendo a requisição AJAX para excluir o produto
+        fetch(`http://localhost/GreenTox_API/agrotoxicos/delete?id=${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao excluir o produto');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert("Produto deletado com sucesso!");
+                // Remover o elemento do DOM ou recarregar a lista de produtos
+                location.reload(); // Exemplo: recarregar a página
+            } else {
+                alert("Erro ao deletar o produto: " + data.error);
+            }
+        })
+        .catch(error => {
+            alert("Erro ao deletar o produto: " + error.message);
+        });
+    }
+}
+
        
 
     </script>
