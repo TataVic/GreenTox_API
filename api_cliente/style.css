@@ -1,73 +1,75 @@
-body {
-  color: rgb(115,115,115);
-  background: url('images/fundo.png') no-repeat center center fixed;
-  background-blend-mode: overlay;
-  background-size: cover;
-}
-.btn-custom {
-  background-color: rgb(153,189,115);
-  color: white;
-  border: none;
-}
-
-.btn-custom:hover {
-  background-color: rgb(115,115,115);
-  color: white;
-}
-
-.btn-custom:active {
-  background-color: rgb(153,189,115)!important; /* Cor quando o botão está pressionado */
-}
-
-.container-custom {
-  background-color: rgb(246,239,223);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid rgb(153,189,115); 
-}
-
-.form-control-custom {
-  background-color: rgb(246,239,223);
-  border: 1px solid rgb(153,189,115);
-  color: rgb(115,115,115);
-}
-
-.form-control-custom::placeholder {
-  color: rgb(153,189,115);
-}
-
-.button-group .btn {
-flex: 1; 
-margin-right: 10px; 
-}
-
-.button-group .btn:last-child {
-margin-right: 0; 
-}
-
-.container-custom-form {
-  background-color: rgb(246, 239, 223);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid rgb(153, 189, 115);
-  width: 300px;
-  text-align: center;
-  margin: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: calc(100% - 40px); 
-}
-
-#modal-dados-todos table {
-  border-radius: 20px;
-  border: 2px solid rgb(153, 189, 115);
-}
-
-#texto{
-  margin-top: 10px;
-  font-size: 12;
-}
+        body {
+            color: rgb(115, 115, 115);
+            background: url('images/fundo.png') no-repeat center center fixed;
+            background-blend-mode: overlay;
+            background-size: cover;
+        }
+        .btn-custom {
+            background-color: rgb(153, 189, 115);
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: rgb(115, 115, 115);
+            color: white;
+        }
+        .btn-custom:active {
+            background-color: rgb(153, 189, 115) !important; /* Cor quando o botão está pressionado */
+        }
+        .container-custom {
+            background-color: rgb(246, 239, 223);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgb(153, 189, 115);
+        }
+        .form-control-custom {
+            background-color: rgb(246, 239, 223);
+            border: 1px solid rgb(153, 189, 115);
+            color: rgb(115, 115, 115);
+        }
+        .form-control-custom::placeholder {
+            color: rgb(153, 189, 115);
+        }
+        .button-group .btn {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .button-group .btn:last-child {
+            margin-right: 0;
+        }
+        .container-custom-form {
+            background-color: rgb(246, 239, 223);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgb(153, 189, 115);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            margin: auto;
+            position: relative;
+        }
+        .container-custom-form.produtos {
+          max-width: 900px; /* Ajuste específico da largura para esta página */
+          width: 100%;
+      }
+        #modal-dados-todos table {
+            border-radius: 20px;
+            border: 2px solid rgb(153, 189, 115);
+        }
+        .btn-menu {
+            background-color: rgb(153, 189, 115);
+            border-color: #28a745;
+            color: white;
+        }
+        .btn-editar {
+            background-color: rgb(153, 189, 115);
+            border-color: #28a745;
+            color: white;
+        }
+        .btn-excluir {
+            background-color: rgb(115, 115, 115);
+            border-color: #28a745;
+            color: white;
+        }
