@@ -1,14 +1,4 @@
-<!DOCTYPE html>
 <?php require 'head.php'; ?>
-<?php
-session_start();
-
-if (!isset($_SESSION['token'])) {
-    header('Location: /GreenTox_API/api_cliente/login.php');
-    exit();
-}
-?>
-
 <body>
     <div class="container mt-5">
         <div class="container-custom">
@@ -40,9 +30,7 @@ if (!isset($_SESSION['token'])) {
         </div>
     </div>
 
-    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     
     <script type="text/javascript">
@@ -76,21 +64,21 @@ if (!isset($_SESSION['token'])) {
                     dataType: 'json',
                     success: function(dados) {
                         if (dados.status && dados.dados.length > 0) {
-                            $('#modal-dados-todos').html(formatarDados(dados.dados)); // Exibe os resultados no modal
+                            $('#modal-dados-todos').html(formatarDados(dados.dados)); 
                         } else {
                             $('#modal-dados-todos').html('<div class="alert alert-warning" role="alert">Nenhum dado encontrado.</div>');
                         }
-                        $('#resultModal').modal('show'); // Abre o modal com os dados da pesquisa
+                        $('#resultModal').modal('show'); 
                     },
                     error: function(erro) {
                         console.error('Erro na API: ' + erro);
                         $('#modal-dados-todos').html('<div class="alert alert-danger" role="alert">Erro ao consultar a API.</div>');
-                        $('#resultModal').modal('show'); // Abre o modal em caso de erro na API
+                        $('#resultModal').modal('show'); 
                     }
                 });
             } else {
                 $('#modal-dados-todos').html('<div class="alert alert-warning" role="alert">Por favor, digite um nome para pesquisa.</div>');
-                $('#resultModal').modal('show'); // Abre o modal com a mensagem de aviso
+                $('#resultModal').modal('show'); 
             }
         }
 
@@ -115,12 +103,12 @@ if (!isset($_SESSION['token'])) {
                             <td>${dado.qtd_estoque}</td>
                             <td>${dado.preco}</td>
                             <td>
-                                <button class="btn btn-sm btn-menu">
+                                <a href="visuprod.php" class="btn btn-sm btn-menu">
                                     <img src="images/olho.png" alt="Visualizar">
-                                </button>
-                                <button class="btn btn-sm btn-editar">
+                                </a>
+                                <a href="prodedit.php" class="btn btn-sm btn-editar">
                                     <img src="images/lapis.png" alt="Editar">
-                                </button>
+                                </a>
                                 <button class="btn btn-sm btn-excluir" onclick="excluirProduto(${dado.id})">
                                     <img src="images/lixeira.png" alt="Excluir">
                                 </button>
