@@ -251,13 +251,23 @@ email (string, obrigatório): email do usuário.
 **Resposta de Sucesso:**
 ```
 {
-    "success": "Agrotóxico deletado com sucesso"
+    "status": true,
+    "titulo": "Agrotóxico deletado com sucesso",
+    "retorno": {
+        "id": " ",
+    },
+    "versao": "v1"
 }
 ```
 **Resposta de Erro:**
 ```
 {
-    "error" : "Erro ao deletar o agrotóxico"
+    "status": false,
+    "titulo": "Erro ao deletar o agrotóxico",
+    "retorno": {
+        "id": " ",
+    },
+    "versao": "v1"
 }
 ```
 
