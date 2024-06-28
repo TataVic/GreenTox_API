@@ -135,7 +135,7 @@ email (string, obrigatório): email do usuário.
 ```
 
 ### Visualizar Agrotóxico por Nome(GETNOME_TOX)
-**Endpoint:** {URL_API}/getnome
+**Endpoint:** {URL_API}/search
 
 **Método HTTP:** GET
 
@@ -251,13 +251,23 @@ email (string, obrigatório): email do usuário.
 **Resposta de Sucesso:**
 ```
 {
-    "success": "Agrotóxico deletado com sucesso"
+    "status": true,
+    "titulo": "Agrotóxico deletado com sucesso",
+    "retorno": {
+        "id": " ",
+    },
+    "versao": "v1"
 }
 ```
 **Resposta de Erro:**
 ```
 {
-    "error" : "Erro ao deletar o agrotóxico"
+    "status": false,
+    "titulo": "Erro ao deletar o agrotóxico",
+    "retorno": {
+        "id": " ",
+    },
+    "versao": "v1"
 }
 ```
 
@@ -350,12 +360,6 @@ email (string, obrigatório): email do usuário.
 {
     "status": false,
     "titulo": "Erro ao logar, verifique as credenciais!",
- "retorno": {
-      "nome":"Ani ", 
-      "usuario":"anis", 
-      "email":"ani@example.com",
-      "senha":""&¨%#GSDA "
-    },
     "versao": "v1"
 }
 ```
