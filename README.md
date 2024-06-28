@@ -39,16 +39,44 @@ email (string, obrigatório): email do usuário.
 **Requisição:**
 ```
 { 
-"nome": "Veneno de mato",
-"tipo": "Veneno",
-"fabricante": "AhgroQuimic",
-"registro_anvisa": 147258,
-"categoria": "Veneno de matin",
-"classe": "Herbicida",
-"preco": 523,
-"qtd_estoque": 5,
-"precaucoes": "Use luva e máscara",
-"modo_uso": "utilize em ambiente aberto"
+  "nome": "Veneno de mato",
+  "tipo": "Veneno",
+  "fabricante": "AhgroQuimic",
+  "registro_anvisa": 147258,
+  "categoria": "Veneno de matin",
+  "classe": "Herbicida",
+  "preco": 523,
+  "qtd_estoque": 5,
+  "precaucoes": "Use luva e máscara",
+  "modo_uso": "utilize em ambiente aberto"
+}
+```
+**Resposta de Sucesso:**
+```
+{
+    "status": true,
+    "titulo": "Produto agrotóxico cadastrado com sucesso!",
+    "dados": {
+        "nome": "Veneno de mato",
+        "tipo": "Veneno",
+        "fabricante": "AhgroQuimic",
+        "registro_anvisa": 147258,
+        "categoria": "Veneno de matin",
+        "classe": "Herbicida",
+        "preco": 523,
+        "qtd_estoque": 5,
+        "precaucoes": "Use luva e máscara",
+        "modo_uso": "utilize em ambiente aberto"
+    },
+    "versao": "v1"
+}
+```
+**Resposta de Erro:**
+```
+{
+    "status": false,
+    "titulo": "Erro no cadastro do agrotóxico: ",
+    excecao: ""
 }
 ```
 
@@ -62,41 +90,136 @@ email (string, obrigatório): email do usuário.
 **Requisição:**
 ```
 { "status": true,
-"titulo": "todos os produtos", "dados": 
+  "titulo": "todos os produtos",
+  "dados":[ 
 {
-"id": 1,
-nome": "Veneno de mato",
-"tipo": "Veneno",
-"fabricante": "AhgroQuimic",
-"registro_anvisa": 147258,
-"categoria": "Veneno de matin",
-"classe": "Herbicida",
-"preco": 523,
-"qtd_estoque": 5,
-"precaucoes": "Use luva e máscara",
-"modo_uso": "utilize em ambiente aberto"
+  "id": 1,
+  nome": "Veneno de mato",
+  "tipo": "Veneno",
+  "fabricante": "AhgroQuimic",
+  "registro_anvisa": 147258,
+  "categoria": "Veneno de matin",
+  "classe": "Herbicida",
+  "preco": 523,
+  "qtd_estoque": 5,
+  "precaucoes": "Use luva e máscara",
+  "modo_uso": "utilize em ambiente aberto"
+]}
+```
+**Resposta de Sucesso:**
+```
+{
+    "status": true,
+    "titulo": "Consulta Realizada",
+    "retorno": {
+        "nome": "Veneno de mato",
+        "tipo": "Veneno",
+        "fabricante": "AhgroQuimic",
+        "registro_anvisa": 147258,
+        "categoria": "Veneno de matin",
+        "classe": "Herbicida",
+        "preco": 523,
+        "qtd_estoque": 5,
+        "precaucoes": "Use luva e máscara",
+        "modo_uso": "utilize em ambiente aberto"
+    },
+    "versao": "v1"
 }
 ```
+**Resposta de Erro:**
+```
+{
+    "status": false,
+    "titulo": "Nenhum registro encontrado para o parâmetro informado"
+}
+```
+
+### Visualizar Agrotóxico por Nome(GETNOME_TOX)
+**Endpoint:** {URL_API}/getnome
+
+**Método HTTP:** GET
+
+**Descrição:** Realiza a visualização dos agrotóxicos, a partir da busca pelo seu nome.
+
+**Requisição:**
+
+```
+{
+  "nome": "Veneno de mato",
+  "tipo": "Veneno",
+  "categoria": "Veneno de matin",
+  "preco": 523,
+  "qtd_estoque": 5,
+}
+```
+**Resposta de Sucesso:**
+```
+{
+    "status": true,
+    "titulo": "Consulta Realizada",
+    "retorno": {
+        "nome": "Veneno de mato",
+        "tipo": "Veneno",
+        "fabricante": "AhgroQuimic",
+        "registro_anvisa": 147258,
+        "categoria": "Veneno de matin",
+        "classe": "Herbicida",
+        "preco": 523,
+        "qtd_estoque": 5,
+        "precaucoes": "Use luva e máscara",
+        "modo_uso": "utilize em ambiente aberto"
+    },
+    "versao": "v1"
+}
+```
+**Resposta de Erro:**
+```
+{
+    "status": false,
+    "titulo": "Nenhum registro cadastrado"
+}
+```
+
 ### Atualizar Agrotóxico (PUT_TOX)
 **Endpoint:** {URL_API}/update
 
 **Método HTTP:** PUT
 
 **Descrição:** Realiza a atualização dos agrotóxicos, de acordo com o campo que foi alterado.
+
 **Requisição:**
 ```
 {
-"id": 1,
-nome": "----------",
-"tipo": "-------",
-"fabricante": "--------",
-"registro_anvisa": ------,
-"categoria": "---------",
-"classe": "------",
-"preco": -----,
-"qtd_estoque": ----,
-"precaucoes": "-------",
-"modo_uso": "------------" 
+  "id": 1,
+  nome": "----------",
+  "tipo": "-------",
+  "fabricante": "--------",
+  "registro_anvisa": ------,
+  "categoria": "---------",
+  "classe": "------",
+  "preco": -----,
+  "qtd_estoque": ----,
+  "precaucoes": "-------",
+  "modo_uso": "------------" 
+}
+```
+**Resposta de Sucesso:**
+```
+{
+    "status": true,
+    "titulo": "Registro atualizado com sucesso.",
+    "retorno": {
+        "nome": "Veneno de mato",
+        ... (o que foi atualizado)
+    },
+    "versao": "v1"
+}
+```
+**Resposta de Erro:**
+```
+{
+    "status": false,
+    "titulo": "Nenhuma alteração foi realizada."
 }
 ```
 
@@ -111,18 +234,128 @@ nome": "----------",
 
 ```
 {
-"id": 1,
-nome": "Veneno de mato",
-"tipo": "Veneno",
-"fabricante": "AhgroQuimic",
-"registro_anvisa": 147258,
-"categoria": "Veneno de matin",
-"classe": "Herbicida",
-"preco": 523,
-"qtd_estoque": 5,
-"precaucoes": "Use luva e máscara",
-"modo_uso": "utilize em ambiente aberto"
+  "id": 1,
+  nome": "Veneno de mato",
+  "tipo": "Veneno",
+  "fabricante": "AhgroQuimic",
+  "registro_anvisa": 147258,
+  "categoria": "Veneno de matin",
+  "classe": "Herbicida",
+  "preco": 523,
+  "qtd_estoque": 5,
+  "precaucoes": "Use luva e máscara",
+  "modo_uso": "utilize em ambiente aberto"
 }
 ```
 
+**Resposta de Sucesso:**
+```
+{
+    "success": "Agrotóxico deletado com sucesso"
+}
+```
+**Resposta de Erro:**
+```
+{
+    "error" : "Erro ao deletar o agrotóxico"
+}
+```
 
+## **EndPoints - Usuários** : Métodos para criar e consultar usuários.
+### Cadastrar Usuário (POST_USER)
+
+**Endpoint:** {URL_API}/cadastrar
+
+**Método HTTP:** POST
+
+**Descrição:** Realiza o cadastro de novo usuário.
+
+**Requisição:**
+```
+{
+  "nome":"Ani ", 
+  "usuario":"anis", 
+  "email":"ani@example.com",
+  "senha":"123"
+}
+```
+**Resposta de Sucesso:**
+```
+{
+    "status": true,
+    "titulo": "Cadastro realizado com sucesso!",
+    "retorno": {
+      "nome":"Ani ", 
+      "usuario":"anis", 
+      "email":"ani@example.com",
+      "senha":""&¨%#GSDA"
+    },
+    "versao": "v1"
+}
+```
+**Resposta de Erro:**
+```
+{
+    "status": false,
+    "titulo": "Erro ao cadastrar, revise os campos!",
+ "retorno": {
+      "nome":"Ani ", 
+      "usuario":" ", 
+      "email":"ani@example.com",
+      "senha":""&¨%#GSDA"
+    },
+    "versao": "v1"
+}
+```
+
+### Visualizar Agrotóxico (GET_USER)
+
+**Endpoint:** {URL_API}/login
+
+**Método HTTP:** GET
+
+**Descrição:** Realiza a visualização e validação do usuário cadastrado, no login.
+
+**Requisição**:
+
+```
+{
+  "usuario":"anis", 
+  "senha":"123"
+}
+```
+      **Requisição:**
+```
+{
+  "nome":"Ani ", 
+  "usuario":"anis", 
+  "email":"ani@example.com",
+  "senha":"123"
+}
+```
+**Resposta de Sucesso:**
+```
+{
+    "status": true,
+    "titulo": "Logado com sucesso!",
+    "retorno": {
+      "usuario":"anis", 
+      "senha":"&¨%#GSDA"
+    },
+    "versao": "v1"
+}
+```
+**Resposta de Erro:**
+```
+{
+    "status": false,
+    "titulo": "Erro ao logar, verifique as credenciais!",
+ "retorno": {
+      "nome":"Ani ", 
+      "usuario":"anis", 
+      "email":"ani@example.com",
+      "senha":""&¨%#GSDA "
+    },
+    "versao": "v1"
+}
+```
