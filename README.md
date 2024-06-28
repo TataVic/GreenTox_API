@@ -360,12 +360,6 @@ email (string, obrigatório): email do usuário.
 {
     "status": false,
     "titulo": "Erro ao logar, verifique as credenciais!",
- "retorno": {
-      "nome":"Ani ", 
-      "usuario":"anis", 
-      "email":"ani@example.com",
-      "senha":""&¨%#GSDA "
-    },
     "versao": "v1"
 }
 ```
