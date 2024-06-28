@@ -2,7 +2,7 @@
 
 <html>
     <body>  
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <div class="container-custom-form">
             <h2 class="mb-4 text-center">Login</h2>
             <form id="loginForm" method="POST">
@@ -13,25 +13,24 @@
                     <input type="password" id="senha" class="form-control form-control-custom" placeholder="Senha" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-custom" >Entrar</button> 
+                    <button type="submit" class="btn btn-custom">Entrar</button>
                 </div>
                 <div class="form-group mb-3">
-                    <p id="texto">Não possui Cadastro? <a href="/GreenTox_API/api_cliente/cadastro.php" font-size:>Cadastra-se aqui</a></p>
+                    <p id="texto">Não possui Cadastro? <a href="/GreenTox_API/api_cliente/cadastro.php">Cadastre-se aqui</a></p>
                 </div>
-                <div id="mensagem" ></div>
+                <div id="mensagem"></div>
             </form>
         </div>
 
-    
-      <script type="text/javascript">
-        $(document).ready(function() { //por causa do submit do button
+        <script type="text/javascript">
+            $(document).ready(function() {
                 $('#loginForm').on('submit', function(event) {
                     event.preventDefault(); // Previne o envio padrão do formulário
                     Entrar();
                 });
             });
 
-        function Entrar(){
+            function Entrar(){
                 var formData = {
                     usuario: $('#usuario').val(),
                     senha: $('#senha').val()
@@ -43,17 +42,17 @@
                     dataType: 'json',
                     data: JSON.stringify(formData),
                     success: function(dados) {
-                        $('#registerForm')[0].reset();
-                    setTimeout(function() {
-                        window.location.href = 'http://localhost/GreenTox_API/api_cliente/index';
-                    }, 2000);
+                        $('#mensagem').html('<div class="alert alert-success" role="alert">Logado com sucesso!</div>');
+                        $('#loginForm')[0].reset();
+                        setTimeout(function() {
+                            window.location.href = 'http://localhost/GreenTox_API/api_cliente/index';
+                        }, 2000);
                     },
                     error: function(erro) {
-                        console.error('Erro na API: ' + erro);
                         $('#mensagem').html('<div class="alert alert-danger" role="alert">Erro ao consultar a API - logar.</div>');
                     }
                 });
-        }
+            }
         </script>
     </body>
 </html>

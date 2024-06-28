@@ -23,13 +23,13 @@ class agrotoxicosController extends controller{
 		if(isset($_GET['id']) && !empty($_GET['id'])){
 			$id = $_GET['id'];
 		}else{
-			output_header(false,'parametros não enviados');
+			output_header(false,'parâmetros não enviados');
 		}
 		$agrotoxicos = new Agrotoxicos();
 		$retorno = $agrotoxicos->getid($id);
 
 		if(!isset($retorno['id']) || empty($retorno['id'])){
-			output_header(false,'Nenhum registro encontrado para o parametro informado');
+			output_header(false,'Nenhum registro encontrado para o parâmetro informado');
 		}
 
 		output_header(true,'Consulta Realizada', $retorno);
@@ -43,7 +43,7 @@ class agrotoxicosController extends controller{
 		$retorno = $agrotoxicos->getnome($nome);
 
 		if(count($retorno) == 0){
-			output_header(false, 'Nenhum tipo cadastrado');
+			output_header(false, 'Nenhum registro cadastrado');
 		} else {
 			output_header(true, 'Consulta realizada', $retorno);
 		}
@@ -117,8 +117,8 @@ class agrotoxicosController extends controller{
 			try {
 				$agrotoxicos = new agrotoxicos();
 				$retorno = $agrotoxicos->update($id, $nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso);
-				if ($retorno) {
-					output_header(true, "Registro atualizado com sucesso.");
+				if ($retorno > 0) {
+					output_header(true, "Registro atualizado com sucesso.", $retorno);
 				} else {
 					output_header(false, "Nenhuma alteração foi realizada.");
 				}
@@ -126,7 +126,7 @@ class agrotoxicosController extends controller{
 				output_header(false, "Erro na atualização do agrotóxico: " . $excecao->getMessage());
 			}
 		} else {
-			output_header('ERROOOOOO');
+			output_header('Erro ao chamar o método PUT - atualizar agrotóxico!');
 			return;
 		}
 	}
@@ -138,15 +138,15 @@ class agrotoxicosController extends controller{
 		$agrotoxicoExistente = $agrotoxicos->getid($id);
 	
 		if (empty($agrotoxicoExistente)) {
-			echo json_encode(['error' => 'Agrotóxico não encontrado']);
+			output_header(false,'Agrotóxico não encontrado', $id);
 			return;
 		}
 		$deletado = $agrotoxicos->delete($id);
 	
-		if ($deletado) {
-			echo json_encode(['success' => 'Agrotóxico deletado com sucesso']);
+		if ($deletado > 0) {
+			output_header(true,'Agrotóxico deletado com sucesso', $deletado );
 		} else {
-			echo json_encode(['error' => 'Erro ao deletar o agrotóxico']);
+			output_header(false,'Erro ao deletar o agrotóxico',$deletado );
 		}
 	}
 }

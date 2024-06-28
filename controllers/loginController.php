@@ -1,5 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
+header('Content-Type: application/json; charset=UTF-8');
+
 Class loginController extends model{
     private $dados;
 
@@ -27,14 +29,14 @@ Class loginController extends model{
 
             $login = new Login();
             $retorno = $login->logar($usuario, $senha);
-            if($retorno > 0){
-                retorna_cadastro('OK', $retorno);
+            if($retorno != 0){
+                output_header(true,'Logado com sucesso!', $retorno);
             }else{
-                retorna_cadastro('Erro ao logar', $retorno);
+                output_header(false,'Erro ao logar, verifique as credenciais!');
             }
 
         } catch (PDOException $excecao) {
-            retorna_cadastro("Erro ao conectar com o banco de dados: ". $excecao->getMessage());
+            output_header("Erro ao conectar com o banco de dados: ". $excecao->getMessage());
          }
     }
 
