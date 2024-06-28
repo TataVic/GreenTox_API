@@ -1,6 +1,5 @@
-# GreenTox_API
-API de cadastro de agrotóxicos e autenticação por usuário e token 🔒
----
+# GreenTox_API - API de cadastro de agrotóxicos e autenticação por usuário e token 🔒
+
 **Base URL {URL_API}**: 🗝️
 '' localhost/GreenTox_API/agrotoxicos/
 
@@ -25,15 +24,19 @@ senha (string, obrigatório): senha do usuário.
 email (string, obrigatório): email do usuário.
 ```
 
-## **EndPoints - Agrotóxicos** : Métodos para criar, ler, atualizar e excluir produtos agrotóxicos (CRUD).
+## PostMan:	
+[Para conferir as requisições](https://time-agro.postman.co/workspace/Time-Agro-Workspace~d86c2b54-15ca-4d00-8734-c9b9df7f101a/collection/36432648-5e45dcb6-905c-4200-9b3d-985bcf389de6?action=share&creator=36432648) 
+
+
+## **EndPoints - Agrotóxicos** : Métodos para criar, ler, atualizar e excluir agrotóxicos (CRUD).
 ### Cadastrar Agrotóxico (POST_TOX)
-Endpoint: {URL_API}/create
+**Endpoint:** {URL_API}/create
 
-Método HTTP: POST
+**Método HTTP:** POST
 
-Descrição: Realiza o cadastro de novos produtos agrotóxicos.
+**Descrição:** Realiza o cadastro de novos produtos agrotóxicos.
 
-Requisição:
+**Requisição:**
 ```
 { 
 "nome": "Veneno de mato",
@@ -50,13 +53,13 @@ Requisição:
 ```
 
 ### Visualizar Agrotóxico (GET_TOX)
-Endpoint: {URL_API}/get
+**Endpoint:** {URL_API}/get
 
-Método HTTP: GET
+**Método HTTP:** GET
 
-Descrição: Realiza a visualização dos agrotóxicos.
+**Descrição:** Realiza a visualização dos agrotóxicos.
 
-Requisição:
+**Requisição:**
 ```
 { "status": true,
 "titulo": "todos os produtos", "dados": 
@@ -75,12 +78,12 @@ nome": "Veneno de mato",
 }
 ```
 ### Atualizar Agrotóxico (PUT_TOX)
-Endpoint: {URL_API}/update
+**Endpoint:** {URL_API}/update
 
-Método HTTP: PUT
+**Método HTTP:** PUT
 
-Descrição: Realiza a atualização dos agrotóxicos, de acordo com o campo que foi alterado.
-
+**Descrição:** Realiza a atualização dos agrotóxicos, de acordo com o campo que foi alterado.
+**Requisição:**
 ```
 {
 "id": 1,
@@ -98,13 +101,13 @@ nome": "----------",
 ```
 
 ### Deletar Agrotóxico (DELETE_TOX)
-Endpoint: {URL_API}/delete
+**Endpoint:** {URL_API}/delete
 
-Método HTTP: DELETE
+**Método HTTP:** DELETE
 
-Descrição: Deletar os agrotóxicos.
+**Descrição:** Deletar os agrotóxicos.
 
-Requisição:
+**Requisição:**
 
 ```
 {
