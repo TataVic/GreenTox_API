@@ -135,7 +135,7 @@ email (string, obrigatório): email do usuário.
 ```
 
 ### Visualizar Agrotóxico por Nome(GETNOME_TOX)
-**Endpoint:** {URL_API}/getnome
+**Endpoint:** {URL_API}/search
 
 **Método HTTP:** GET
 
