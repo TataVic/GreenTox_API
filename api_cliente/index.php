@@ -1,3 +1,4 @@
+
 <?php require 'head.php'; ?>
 <body>
     <div class="container mt-5">
@@ -9,7 +10,7 @@
             <div class="button-group mb-4">
                 <button type="button" class="btn btn-custom" onclick="PesquisaNome()">Pesquisar</button>
                 <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#resultModal" onclick="Listartodos()">Consultar Todos</button>
-                <button type="button" class="btn btn-custom" onclick="CadastrarProd()">Cadastrar</button>
+                <button type="button" class="btn btn-custom" onclick="window.location.href='cadprod.php'">Cadastrar produto</button>
             </div>
             <div id="dados-todos" class="mb-4"></div>
             <div id="dados-nome" class="mt-4"></div>
@@ -83,43 +84,48 @@
         }
 
         function formatarDados(dados) {
-            let table = `<table class="table table-bordered">
-                            <thead>
-                                <tr style="text-align: center;">
-                                    <th>Nome</th>
-                                    <th>Tipo</th>
-                                    <th>Categoria</th>
-                                    <th>Estoque</th>
-                                    <th>Preço</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>`;
-            dados.forEach(dado => {
-                table += `<tr style="text-align: center;">
-                            <td>${dado.nome}</td>
-                            <td>${dado.tipo}</td>
-                            <td>${dado.categoria}</td>
-                            <td>${dado.qtd_estoque}</td>
-                            <td>${dado.preco}</td>
-                            <td>
-                                <a href="visuprod.php" class="btn btn-sm btn-menu">
-                                    <img src="images/olho.png" alt="Visualizar">
-                                </a>
-                                <a href="prodedit.php" class="btn btn-sm btn-editar">
-                                    <img src="images/lapis.png" alt="Editar">
-                                </a>
-                                <button class="btn btn-sm btn-excluir" onclick="excluirProduto(${dado.id})">
-                                    <img src="images/lixeira.png" alt="Excluir">
-                                </button>
-                            </td>
-                          </tr>`;
-            });
-            table += `</tbody></table>`;
-            return table;
-        }
+    let table = `<table class="table table-bordered">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Categoria</th>
+                            <th>Estoque</th>
+                            <th>Preço</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+    dados.forEach(dado => {
+        table += `<tr style="text-align: center;">
+                    <td>${dado.nome}</td>
+                    <td>${dado.tipo}</td>
+                    <td>${dado.categoria}</td>
+                    <td>${dado.qtd_estoque}</td>
+                    <td>${dado.preco}</td>
+                    <td>
+                 <a href="visuprod.php?id=${dado.id}" class="btn btn-sm btn-menu">
+    <img src="images/olho.png" alt="Visualizar">
+</a>
+                       <button onclick="editarProduto(${dado.id})" class="btn btn-sm btn-editar">
+                            <img src="images/lapis.png" alt="Editar">
+                        </button>
+                        <button class="btn btn-sm btn-excluir" onclick="excluirProduto(${dado.id})">
+                            <img src="images/lixeira.png" alt="Excluir">
+                        </button>
+                    </td>
+                  </tr>`;
+    });
+    table += `</tbody></table>`;
+    return table;
+}
 
-        function excluirProduto(id) {
+function editarProduto(id) {
+    console.log('ID do produto:', id); // Verifique se o ID está sendo capturado corretamente
+    window.location.href = 'prodedit.php?id=' + id;
+}
+
+function excluirProduto(id) {
     if (confirm("Você tem certeza que deseja excluir este produto?")) {
         // Fazendo a requisição AJAX para excluir o produto
         fetch(`http://localhost/GreenTox_API/agrotoxicos/delete?id=${id}`, {

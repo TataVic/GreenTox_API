@@ -53,10 +53,47 @@
                     <textarea id="modo_uso" name="modo_uso" rows="4" class="form-control form-control-custom" required></textarea>
                 </div>
             </div>
-            <button type="submit" class="btn btn-custom">Cadastrar Produto</button>
+            <button type="submit" class="btn btn-custom" onclick="cadastrarprod()">Cadastrar Produto</button>
         </form>
-    </div>
+</div>
 
+    <script type="text/javascript">
+         function cadastrarprod(event){
+        event.preventDefault(); // Prevenir o envio do formulário padrão
+        
+        var dados = {
+            nome: $('#nome').val(),
+            tipo: $('#tipo').val(),
+            fabricante: $('#fabricante').val(),
+            registro_anvisa: $('#registro_anvisa').val(),
+            categoria: $('#categoria').val(),
+            classe: $('#classe').val(),
+            preco: $('#preco').val(),
+            qtd_estoque: $('#qtd_estoque').val(),
+            precaucoes: $('#precaucoes').val(),
+            modo_uso: $('#modo_uso').val()
+        };
+
+        $.ajax({
+            url: 'http://localhost/GreenTox_API/agrotoxicos/create',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(dados),
+            success: function(response) {
+                alert('Produto cadastrado com sucesso!');
+                window.location.href = 'index.php';
+            },
+            error: function(error) {
+                alert('Erro ao cadastrar o produto!');
+                console.log(error);
+            }
+        });
+    }
+
+    $('form').on('submit', cadastrarprod);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
 </body>
 </html>

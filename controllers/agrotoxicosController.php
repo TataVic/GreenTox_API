@@ -18,21 +18,22 @@ class agrotoxicosController extends controller{
 	}
 	
 	//Função de Pesquisar registros
-	public function get(){
-		//$api = new Api();
-		if(isset($_GET['id']) && !empty($_GET['id'])){
+	public function get() {
+		if(isset($_GET['id']) && !empty($_GET['id'])) {
 			$id = $_GET['id'];
-		}else{
+		} else {
 			output_header(false,'parametros não enviados');
+			return;
 		}
+	
 		$agrotoxicos = new Agrotoxicos();
 		$retorno = $agrotoxicos->getid($id);
-
-		if(!isset($retorno['id']) || empty($retorno['id'])){
+	
+		if(!isset($retorno['id']) || empty($retorno['id'])) {
 			output_header(false,'Nenhum registro encontrado para o parametro informado');
+		} else {
+			output_header(true,'Consulta Realizada', $retorno);
 		}
-
-		output_header(true,'Consulta Realizada', $retorno);
 	}
 	
 	//Função de Pesquisar por nome os registros
@@ -117,8 +118,8 @@ class agrotoxicosController extends controller{
 			try {
 				$agrotoxicos = new agrotoxicos();
 				$retorno = $agrotoxicos->update($id, $nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso);
-				if ($retorno) {
-					output_header(true, "Registro atualizado com sucesso.");
+				if ($retorno > 0) {
+					output_header(true, "Registro atualizado com sucesso.", $retorno);
 				} else {
 					output_header(false, "Nenhuma alteração foi realizada.");
 				}
@@ -126,7 +127,7 @@ class agrotoxicosController extends controller{
 				output_header(false, "Erro na atualização do agrotóxico: " . $excecao->getMessage());
 			}
 		} else {
-			output_header('ERROOOOOO');
+			output_header('Erro ao chamar o método PUT - atualizar agrotóxico!');
 			return;
 		}
 	}

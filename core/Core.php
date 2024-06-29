@@ -8,7 +8,7 @@ class Core{
 		//$router->addRoute('/', array(new homeController(), 'index'));
 		$router->addRoute('/agrotoxicos', array(new agrotoxicosController(), 'index')); // Retorna todos os agrotóxicos
 		$router->addRoute('/agrotoxicos/get', array(new agrotoxicosController(), 'get')); // Retorna um agrotóxico pelo ID
-		$router->addRoute('/agrotoxicos/search', array(new agrotoxicosController(), 'getnome')); // Retorna um agrotóxico pelo ID
+		$router->addRoute('/agrotoxicos/search', array(new agrotoxicosController(), 'getnome')); // Retorna um agrotóxico pelo nome
 		$router->addRoute('/agrotoxicos/create', array(new agrotoxicosController(), 'create')); // Cria um novo agrotóxico
 		$router->addRoute('/agrotoxicos/update', array(new agrotoxicosController(), 'update')); // Atualiza um agrotóxico pelo ID
 		$router->addRoute('/agrotoxicos/delete', array(new agrotoxicosController(), 'delete')); // Deleta um agrotóxico pelo ID

@@ -91,7 +91,9 @@ class agrotoxicos extends model{
         return $retorno;
     }
 	
-	public function update($id, $nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso) {
+// Função de Atualizar registros (UPDATE)
+public function update($id, $nome, $tipo, $fabricante, $registro_anvisa, $categoria, $classe, $preco, $qtd_estoque, $precaucoes, $modo_uso) {
+    try {
         $sql = "UPDATE tab_agrotox SET 
                     nome = :nome, 
                     tipo = :tipo, 
@@ -104,24 +106,25 @@ class agrotoxicos extends model{
                     precaucoes = :precaucoes, 
                     modo_uso = :modo_uso 
                 WHERE id = :id";
+			$sql = $this->db->prepare($sql);
+			$sql->bindParam(':id', $id);
+			$sql->bindParam(':nome', $nome);
+			$sql->bindParam(':tipo', $tipo);
+			$sql->bindParam(':fabricante', $fabricante);
+			$sql->bindParam(':registro_anvisa', $registro_anvisa);
+			$sql->bindParam(':categoria', $categoria);
+			$sql->bindParam(':classe', $classe);
+			$sql->bindParam(':preco', $preco);
+			$sql->bindParam(':qtd_estoque', $qtd_estoque);
+			$sql->bindParam(':precaucoes', $precaucoes);
+			$sql->bindParam(':modo_uso', $modo_uso);
+			$sql->execute();
 
-        $stmt = $this->db->prepare($sql);
-		$stmt->bindValue(':id', $id);
-        $stmt->bindValue(':nome', $nome);
-        $stmt->bindValue(':tipo', $tipo);
-        $stmt->bindValue(':fabricante', $fabricante);
-        $stmt->bindValue(':registro_anvisa', $registro_anvisa);
-        $stmt->bindValue(':categoria', $categoria);
-        $stmt->bindValue(':classe', $classe);
-        $stmt->bindValue(':preco', $preco);
-        $stmt->bindValue(':qtd_estoque', $qtd_estoque);
-        $stmt->bindValue(':precaucoes', $precaucoes);
-        $stmt->bindValue(':modo_uso', $modo_uso);
-        
-        $stmt->execute();
-
-        return $stmt->rowCount();
+        return $sql->rowCount() > 0;
+    } catch (PDOException $excecao) {
+        throw new Exception("Erro ao atualizar agrotóxico: " . $excecao->getMessage());
     }
+}
 
 
 	// Função de deletar por id (DELETE)
