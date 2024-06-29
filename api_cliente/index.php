@@ -1,4 +1,3 @@
-
 <?php require 'head.php'; ?>
 <body>
     <div class="container mt-5">
@@ -104,9 +103,9 @@
                     <td>${dado.qtd_estoque}</td>
                     <td>${dado.preco}</td>
                     <td>
-                 <a href="visuprod.php?id=${dado.id}" class="btn btn-sm btn-menu">
-    <img src="images/olho.png" alt="Visualizar">
-</a>
+                <a href="visuprod.php?id=${dado.id}" class="btn btn-sm btn-menu">
+            <img src="images/olho.png" alt="Visualizar">
+            </a>
                        <button onclick="editarProduto(${dado.id})" class="btn btn-sm btn-editar">
                             <img src="images/lapis.png" alt="Editar">
                         </button>
@@ -146,11 +145,12 @@ function excluirProduto(id) {
                 // Remover o elemento do DOM ou recarregar a lista de produtos
                 location.reload(); // Exemplo: recarregar a página
             } else {
-                alert("Erro ao deletar o produto: " + data.error);
+                window.location.href = 'index.php';
             }
         })
         .catch(error => {
             alert("Erro ao deletar o produto: " + error.message);
+            window.location.href = 'index.php';
         });
     }
 }

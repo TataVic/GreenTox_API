@@ -53,8 +53,6 @@
                 <textarea id="modo_uso" name="modo_uso" rows="4" class="form-control form-control-custom" disabled></textarea>
             </div>
         </div>
-
-        <!-- Botão de volta -->
         <a href="index.php" class="btn btn-secondary mb-3">Voltar</a>
     </div>
 

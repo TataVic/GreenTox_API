@@ -1,7 +1,7 @@
 <?php require 'head.php'; ?>
 <body>
     <div class="container-custom-form produtos">
-        <h2 class="mb-6">Agrotóxicos</h2>
+        <h2 class="mb-6">Editar Agrotóxico</h2>
         <form id="formEditarProduto" method="POST">
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -36,7 +36,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="preco" class="form-label">Preço:</label>
-                    <input type="number" id="preco" name="preco" step="0.01" class="form-control form-control-custom" min="1">
+                    <input type="number" id="preco" name="preco" step="0.01" class="form-control form-control-custom" >
                 </div>
                 <div class="col-md-6">
                     <label for="qtd_estoque" class="form-label">Quantidade em Estoque:</label>
@@ -54,6 +54,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-custom">Editar Produto</button>
+            <a href="index.php" class="btn btn-custom">Voltar</a>
         </form>
     </div>
 
@@ -70,6 +71,7 @@
                     type: 'GET',
                     dataType: 'json',
                     success: function(response) {
+                        console.log(response); // Log da resposta da API
                         if (response.status) {
                             const agrotoxico = response.dados;
                             $('#nome').val(agrotoxico.nome);
@@ -84,14 +86,14 @@
                             $('#modo_uso').val(agrotoxico.modo_uso);
                         } else {
                             alert('Erro ao carregar os dados do agrotóxico.');
-                            window.location.href = 'index.php'; 
                         }
                     },
                     error: function(error) {
                         console.error('Erro na requisição:', error);
-                        window.location.href = 'index.php'; 
                     }
                 });
+            } else {
+                alert('ID do agrotóxico não encontrado na URL.');
             }
 
             $('#formEditarProduto').on('submit', function(event) {
@@ -128,7 +130,7 @@
                     success: function(data) {
                         if (data.success) {
                             alert('Agrotóxico atualizado com sucesso!');
-                            window.location.href = 'index.php';
+                            window.location.href = 'index.php'; // Redireciona para index.php após o sucesso
                         } else {
                             window.location.href = 'index.php';
                         }
@@ -136,7 +138,6 @@
                     error: function(error) {
                         console.error('Erro na requisição:', error);
                         alert('Erro ao atualizar o agrotóxico.');
-                        window.location.href = 'index.php';
                     }
                 });
             }

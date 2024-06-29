@@ -17,21 +17,23 @@ class agrotoxicosController extends controller{
 		output_header(true,'todos os produtos',$lista);
 	}
 	
-	//Função de Pesquisar registros
 	public function get() {
-		if(isset($_GET['id']) && !empty($_GET['id'])) {
-			$id = $_GET['id'];
-		}else{
-			output_header(false,'parâmetros não enviados');
-		}
-	
-		$agrotoxicos = new Agrotoxicos();
-		$retorno = $agrotoxicos->getid($id);
+        if(isset($_GET['id']) && !empty($_GET['id'])) {
+            $id = $_GET['id'];
+        } else {
+            output_header(false, 'Parâmetros não enviados');
+            return;
+        }
+    
+        $agrotoxicos = new Agrotoxicos();
+        $retorno = $agrotoxicos->getid($id);
 
-		if(!isset($retorno['id']) || empty($retorno['id'])){
-			output_header(false,'Nenhum registro encontrado para o parâmetro informado');
-		}
-	}
+        if(empty($retorno)) {
+            output_header(false, 'Nenhum registro encontrado para o parâmetro informado');
+        } else {
+            output_header(true, 'Registro encontrado', $retorno);
+        }
+    }
 	
 	//Função de Pesquisar por nome os registros
 	public function getnome() {
