@@ -1,7 +1,8 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 header('Content-Type: application/json; charset=UTF-8');
 
-class LoginController extends Controller {
+Class loginController extends model{
     private $dados;
 
     public function __construct() {

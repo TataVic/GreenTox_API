@@ -45,7 +45,11 @@ class cadastroController extends Controller {
             $cadastro = new Cadastro();
             $retorno = $cadastro->cadastrar($nome, $usuario, $email,  $senha, $token);
 
-           retorna_cadastro('OK', $retorno);
+            if ($retorno > 0){
+                output_header(true,'Cadastro realizado com sucesso!', $retorno);
+            }else{
+                output_header(false,'Erro ao cadastrar, revise os campos!', $retorno);
+            }
 
         } catch (PDOException $excecao) {
            retorna_cadastro("Erro ao conectar com o banco de dados: ". $excecao->getMessage());
