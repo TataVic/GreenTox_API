@@ -36,7 +36,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="preco" class="form-label">Preço:</label>
-                    <input type="number" id="preco" name="preco" step="0.01" class="form-control form-control-custom" >
+                    <input type="number" id="preco" name="preco" step="0.01" class="form-control form-control-custom" min="1" >
                 </div>
                 <div class="col-md-6">
                     <label for="qtd_estoque" class="form-label">Quantidade em Estoque:</label>
@@ -130,7 +130,7 @@
                     success: function(data) {
                         if (data.success) {
                             alert('Agrotóxico atualizado com sucesso!');
-                            window.location.href = 'index.php'; // Redireciona para index.php após o sucesso
+                            window.location.href = 'index.php'; 
                         } else {
                             window.location.href = 'index.php';
                         }
