@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 27/06/2024 às 10:05
--- Versão do servidor: 8.3.0
--- Versão do PHP: 8.2.18
+-- Tempo de geração: 29/06/2024 às 02:03
+-- Versão do servidor: 8.2.0
+-- Versão do PHP: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `agrotox`
 --
-create database agrotox;
+
 -- --------------------------------------------------------
 
 --
@@ -41,17 +41,21 @@ CREATE TABLE IF NOT EXISTS `tab_agrotox` (
   `precaucoes` text,
   `modo_uso` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `tab_agrotox`
 --
 
 INSERT INTO `tab_agrotox` (`id`, `nome`, `tipo`, `fabricante`, `registro_anvisa`, `categoria`, `classe`, `preco`, `qtd_estoque`, `precaucoes`, `modo_uso`) VALUES
-(1, 'Pesticida X', 'Herbicida', 'AgroQuímica Ltda', '1234567890', 'Controle de Plantas Daninhas', 'Classe 2', 150.75, 500, 'Evitar contato com a pele e olhos. Usar equipamento de proteção.', 'Diluir 10 ml em 1 litro de água e aplicar nas áreas afetadas.'),
-(9, 'Veneno de mato', 'Veneno', 'AhgroQuimic', '147258', 'Veneno de matin', 'Herbicida', 523.00, 5, 'Use luva e máscara', 'utilize em ambiente aberto'),
-(7, 'Novo Nome do Agrotóxico', 'Novo Tipo', 'Novo Fabricante', 'Novo Registro', 'Nova Categoria', 'Nova Classe', 99.99, 100, 'Novas Precauções', 'Novo Modo de Uso'),
-(8, '', '', '', '', '', '', 0.00, 0, '', '');
+(35, 'Fungicida BioShield', 'Fungicida', 'BioFarm Solutions', '135792468', 'Uso Agrícola', 'Classe 2', 189.99, 550, 'Evitar contato com olhos e pele. Armazenar em local fresco e seco.', 'Aplicar durante o período de floração das culturas para prevenir doenças fúngicas'),
+(34, 'Inseticida BugStop Pro', 'Inseticida', 'GreenAgro Solutions', '543210987', 'Uso Agrícola', 'Classe 1', 159.00, 400, 'Manter embalagens fechadas e fora do alcance de crianças. Descartar corretamente embalagens vazias.', 'Aplicar nas primeiras horas da manhã ou no final da tarde'),
+(33, 'Herbicida WeedErase', 'Herbicida', 'AgroScience Solutions', '987654321', 'Uso Agrícola', 'Classe 3', 139.75, 350, 'Utilizar EPIs completos durante a aplicação. Não aplicar em dias de vento forte.', 'Aplicar diretamente sobre as plantas daninhas com folhas verdes e saudáveis'),
+(30, 'Inseticida KillBug', 'Herbicida', 'AgroTech Solutions', '13022004', 'Uso Agrícola', 'Classe 2', 78.00, 52, 'Cuidado', 'Cuidado'),
+(32, 'Fungicida ShieldGrow', 'Fungicida', 'PlantCare Industries', '765432109', 'Uso Agrícola', 'Classe 2', 219.50, 600, 'Evitar aplicação próxima a cursos d\'água. Armazenar em local fresco e seco.', 'Aplicar preventivamente antes do início da estação chuvosa'),
+(31, 'Inseticida KillBug', 'Inseticida', 'AgroTech Solutions', '246801357', 'Uso Agrícola', 'Classe 1', 179.95, 250, 'Utilizar máscara respiratória e luvas durante a aplicação. Manter fora do alcance de crianças e animais.', 'Aplicar nas áreas infestadas por insetos conforme recomendações técnicas'),
+(25, 'Inseticida MaxBug', 'Inseticida', 'AgroSafe Solutions', '246801357', 'Uso Agrícola', 'Classe 1', 169.50, 350, 'Evitar contato direto com o produto puro. Armazenar em local seguro e ventilado.', 'Aplicar durante o período de maior atividade dos insetos alvo'),
+(26, 'Fungicida CropGuard', 'Fungicida', 'CropCare Solutions', '765432109', 'Uso Agrícola', 'Classe 2', 209.00, 500, 'Evitar aplicação em dias muito quentes. Armazenar longe de alimentos e rações animais.', 'Aplicar preventivamente a cada 15 dias durante o período de desenvolvimento da cultura');
 
 -- --------------------------------------------------------
 
@@ -68,21 +72,29 @@ CREATE TABLE IF NOT EXISTS `tab_usuario` (
   `email` varchar(20) NOT NULL,
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `tab_usuario`
 --
 
 INSERT INTO `tab_usuario` (`id`, `nome`, `usuario`, `senha`, `email`, `token`) VALUES
-(1, 'João Silva', 'joaosilva', '$2y$10$v8oNenei35EPg8hV7Z31guoOScW8iHDut7WAx61oR.hH3xWUx4JSW', 'joao@example.com', 'ddd39350ebdfdfc3eb4d3adc355cbaeb'),
-(2, 'Ani ', 'anis', '$2y$10$wxxSHIRUfgVL4rIRLAKcPe0EHrqL4MFf.kgootm9eWLkYsZEO3Tkq', 'ani@example.com', '60177cab5bb1268f0851221d080669d9'),
-(3, 'ta', 'ta', '$2y$10$46OLuOEXB7U3Nb3.IE6u2.XE3xP9VIJ7N.5OJSETpFhef3roNQApW', 'ta@gmai', 'de6457b545d56057bab726327b3db86f'),
-(4, 'ta', 'ta', '$2y$10$3UYCu3TDKx7cN9ryZrb2fe8cFM2gFWsUxhLOMgVh80XZWSm2Xs8KC', 'ta@gm', 'babfda54cc000d1c32064d4235a1592c'),
-(5, 'ta', 'ta', '$2y$10$bfe8MHTSF0tAPHeQ3YS4yuPBYARgbWVyXcqLpr7YSZLLcyuANcyIm', 'ta@gm', '5e30c90d82e5f0e48b738d229897a179'),
-(6, 'ta', 'ta', '$2y$10$Lgl6vxOA2tCVJeratC2mEeQCch3yHAmeW9ALKvxPTojZFCm2fdA7y', 'ta@gma', '7347366d6885fdfb5dc62ff52b303271'),
-(7, 'ta', 'tau', '$2y$10$vTS0d9fFwk4JSu3E8ZO.D..rb8capat5cGl7JVJjcvzvOhUStAy86', 'tau@gmail.com', '073d977021e9e3005132fe13df03c33a'),
-(8, 'tau', 'tau', '$2y$10$wg6x5TzW2ljpj82G3CBKhuDTGt0JHWTlfBDW6fosKvE.5wll1bw2W', 'tau@gmail.com', '9599221f6c1c8774eaaf4691242e7d59');
+(1, 'João Silva', 'joaosilva', '$2y$10$v8oNenei35EPg8hV7Z31guoOScW8iHDut7WAx61oR.hH3xWUx4JSW', 'joao.silva@example.c', 'ddd39350ebdfdfc3eb4d3adc355cbaeb'),
+(2, 'Maria Santos', 'mariasantos', '$2y$10$wxxSHIRUfgVL4rIRLAKcPe0EHrqL4MFf.kgootm9eWLkYsZEO3Tkq', 'maria.santos@example', '60177cab5bb1268f0851221d080669d9'),
+(3, 'Carlos Oliveira', 'carlosoliveira', '$2y$10$46OLuOEXB7U3Nb3.IE6u2.XE3xP9VIJ7N.5OJSETpFhef3roNQApW', 'carlos.oliveira@exam', 'de6457b545d56057bab726327b3db86f'),
+(4, 'Ana Costa', 'anacosta', '$2y$10$3UYCu3TDKx7cN9ryZrb2fe8cFM2gFWsUxhLOMgVh80XZWSm2Xs8KC', 'ana.costa@example.co', 'babfda54cc000d1c32064d4235a1592c'),
+(5, 'Pedro Lima', 'pedrolima', '$2y$10$bfe8MHTSF0tAPHeQ3YS4yuPBYARgbWVyXcqLpr7YSZLLcyuANcyIm', 'pedro.lima@example.c', '5e30c90d82e5f0e48b738d229897a179'),
+(6, 'Lucas Almeida', 'lucasalmeida', '$2y$10$Lgl6vxOA2tCVJeratC2mEeQCch3yHAmeW9ALKvxPTojZFCm2fdA7y', 'lucas.almeida@exampl', '7347366d6885fdfb5dc62ff52b303271'),
+(7, 'Beatriz Souza', 'beatrizsouza', '$2y$10$vTS0d9fFwk4JSu3E8ZO.D..rb8capat5cGl7JVJjcvzvOhUStAy86', 'beatriz.souza@exampl', '073d977021e9e3005132fe13df03c33a'),
+(8, 'Rafael Pereira', 'rafaelpereira', '$2y$10$wg6x5TzW2ljpj82G3CBKhuDTGt0JHWTlfBDW6fosKvE.5wll1bw2W', 'rafael.pereira@examp', '9599221f6c1c8774eaaf4691242e7d59'),
+(9, 'João Silva', 'joaosilva', '1234', 'joao.silva@example.c', 'ddd39350ebdfdfc3eb4d3adc355cbaeb'),
+(10, 'Maria Santos', 'mariasantos', '1234', 'maria.santos@example', '60177cab5bb1268f0851221d080669d9'),
+(11, 'Carlos Oliveira', 'carlosoliveira', '1234', 'carlos.oliveira@exam', 'de6457b545d56057bab726327b3db86f'),
+(12, 'Ana Costa', 'anacosta', '1234', 'ana.costa@example.co', 'babfda54cc000d1c32064d4235a1592c'),
+(13, 'Pedro Lima', 'pedrolima', '1234', 'pedro.lima@example.c', '5e30c90d82e5f0e48b738d229897a179'),
+(14, 'Lucas Almeida', 'lucasalmeida', '1234', 'lucas.almeida@exampl', '7347366d6885fdfb5dc62ff52b303271'),
+(15, 'Beatriz Souza', 'beatrizsouza', '1234', 'beatriz.souza@exampl', '073d977021e9e3005132fe13df03c33a'),
+(16, 'Rafael Pereira', 'rafaelpereira', '1234', 'rafael.pereira@examp', '9599221f6c1c8774eaaf4691242e7d59');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
